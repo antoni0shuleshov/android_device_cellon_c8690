@@ -21,14 +21,22 @@
 # function: add_lunch_combo generic-eng
 
 #add_lunch_combo full_c8690-eng
-#add_lunch_combo cm_c8690-eng
+
+add_lunch_combo cm_c8690-eng
+
 chooseproduct cm_c8690
-choosetype 2
-choosevariant eng
+
+#TARGET_BUILD_TYPE=debug
+choosetype 2 
+
+#TARGET_BUILD_VARIANT=eng
+choosevariant eng 
 printconfig
 echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 echo "if u want change device please remove or edit device/cellon/c8690/vendorsetup.sh"
 echo "!!!!!!!!!!!!!!!!!^^^!!!!!!!!!!!!!!!!!"
 echo "!!!!!!!!!!!!!!-<(^v^)>-!!!!!!!!!!!!!!"
 echo "!!!!!!!!!!!!!!!!!\~/!!!!!!!!!!!!!!!!!"
+
+#usefull tools
 source device/cellon/c8690/kaatools/kaatools.sh

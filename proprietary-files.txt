@@ -1,3 +1,13 @@
+# (C) kaasnake, 2013
+# Definition file for copying vendor blobs to product's vendor directory
+# see copy-props-vendor.sh for details
+#
+# syntax :
+# <source_file>[:<target_file>]
+# target_file = source_file when target_file is ommitted
+#
+#
+
 system/lib/bluez-plugin/audio.so
 system/lib/bluez-plugin/bluetooth-health.so
 system/lib/bluez-plugin/input.so
