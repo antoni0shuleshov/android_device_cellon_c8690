@@ -15,4 +15,5 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_c8960.mk
+    $(LOCAL_DIR)/cm.mk
+    $(LOCAL_DIR)/full_c8690.mk

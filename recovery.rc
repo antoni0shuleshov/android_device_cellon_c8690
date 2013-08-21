@@ -2,35 +2,22 @@ on early-init
     start ueventd
 
 on init
-    export PATH /sbin:/system/bin
+    export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
     export ANDROID_ROOT /system
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /sdcard
 
-    symlink /system/etc /etc
-
     mkdir /sdcard
+    mkdir /extSdCard
+    mkdir /external_sd
     mkdir /system
     mkdir /data
     mkdir /cache
+    mkdir /preload
+    mkdir /efs
     mount /tmp /tmp tmpfs
-    mkdir /system/bin
-    symlink /sbin/busybox /system/bin/sh
-    symlink /sbin/busybox /sbin/sh
-    symlink /sbin/busybox /sbin/ls
-    symlink /sbin/busybox /sbin/chmod
-    symlink /sbin/busybox /sbin/ln
-    symlink /sbin/busybox /sbin/cat
-    symlink /sbin/busybox /sbin/mount
-    symlink /sbin/busybox /sbin/vi
-
-    chmod 777 /dev/mtd/mtd0
-    chmod 777 /sdcard
-
-    chmod 0755 /sbin/busybox
 
 on boot
-
     ifup lo
     hostname localhost
     domainname localdomain
@@ -39,13 +26,24 @@ on boot
 
 service ueventd /sbin/ueventd
     critical
+
 service console /sbin/sh
+    class core
     console
+    disabled
+    group log
+
+on property:ro.debuggable=1
+    start console
 
 service recovery /sbin/recovery
 
 service adbd /sbin/adbd recovery
     disabled
+
+# Always start adbd on userdebug and eng builds
+on property:ro.debuggable=1
+    setprop adb.recovery 1
 
 # Always start adbd on userdebug and eng builds
 on property:ro.debuggable=1
